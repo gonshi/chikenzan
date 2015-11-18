@@ -40,11 +40,6 @@ gulp.task 'serve', () ->
     # default
     $.watch([config.path.htdocs + '**/*.html'], reload)
     $.watch([config.path.jade + '**/*.jade'], -> runSequence('jade', reload))
-    $.watch([
-        config.sass.lib,
-        config.path.scss_common + '**/*.scss',
-        config.path.scss + '**/*.scss'
-    ], -> runSequence('styles', reload))
     # $.watch([config.path.js + '**/*.js'], reload)
     $.watch([config.path.coffee + '**/*.coffee'], -> runSequence('coffeelint', 'coffee', reload))
 
