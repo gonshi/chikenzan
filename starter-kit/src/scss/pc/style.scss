@@ -1,0 +1,43 @@
+// ==========================================================================
+//
+//   style.scss
+//   @author Youhei Isokawa
+//
+// ==========================================================================
+
+// configuration file
+@import "config";
+
+// modules
+@import
+    "../common/modules/mixins",
+    "../common/modules/functions";
+
+// reset type => "normalize", "sanitize", "original", "yui", "html5doctor", "ericmeyer"
+@import "../common/reset/original";
+
+@import
+    "../common/modules/sprite-map",
+    "../common/modules/container",
+    "../common/modules/clearfix";
+
+// partials
+@import
+    "partials/typography",
+    // structures
+    "partials/base",
+    "partials/header",
+    "partials/footer",
+    // states
+    "partials/state";
+
+// pages
+@import
+    "pages/index";
+
+
+// print
+// ==========================================================================
+@media print {
+    @import "partials/print";
+}

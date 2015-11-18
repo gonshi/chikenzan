@@ -1,0 +1,33 @@
+// Layout
+// ===================================================================
+//
+// absolute
+// 絶対位置に配置
+// @param $top
+// @param $right
+// @param $bottom
+// @param $left
+//
+@mixin absolute($top, $right, $bottom, $left) {
+    position: absolute;
+
+    @if $top    != '' { top: $top; }
+    @if $bottom != '' { bottom: $bottom; }
+    @if $left   != '' { left: $left; }
+    @if $right  != '' { right: $right; }
+}
+
+//
+// absolute-center
+// 中央に絶対配置
+// @param $width
+// @param $height
+//
+@mixin absolute-center($width, $height) {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    @if $width  != '' { width: $width; margin-left: -$width / 2; }
+    @if $height != '' { height: $height; margin-top: -$height / 2; }
+}

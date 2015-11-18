@@ -1,0 +1,30 @@
+// ==========================================================================
+// Base
+// ==========================================================================
+body {
+    min-width: $wrapper-width;
+    background-color: $bg-color;
+    color: $font-color;
+    font-size: #{$base-font-size}px;
+    @if $legacy-support-for-ie {
+        *font-size: small;
+    }
+    font-family: $sans-serif;
+    line-height: 1.5;
+}
+
+a {
+    color: $link-color;
+    text-decoration: none;
+
+    &:link, &:visited {
+        outline: 0;
+    }
+    &:hover, &:active {
+        color: $link-color-hover;
+        text-decoration: underline;
+    }
+}
+
+.contents {
+}

@@ -1,0 +1,63 @@
+// ==========================================================================
+// Global config file
+// ==========================================================================
+
+// Namespace
+// ==========================================================================
+$orange-tabby: ();
+
+// Paths
+// ==========================================================================
+$http-path: "http://";
+$css-dir: "css";
+$image-dir: "img";
+$fonts-dir: "fonts";
+$hierarchy-of-img-from-css: '../';
+
+// Colors
+// ==========================================================================
+// main color
+$main-color: #fff !default;
+// accent
+$accent-color: #0ff !default;
+// background
+$bg-color: #fff !default;
+// font
+$font-color: #000 !default;
+// sub font color
+$sub-font-color: #CCC !default;
+// links
+$link-color: #0072ff !default;
+$link-color-hover: #0072ff !default;
+$link-color-visited: #0072ff !default;
+$link-color-active: #0072ff !default;
+// border
+$border-color: #000 !default;
+
+// Fonts
+// ==========================================================================
+$sans-serif: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", Meiryo, "メイリオ", sans-serif;
+$serif:      "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif;
+$yu-gothic:  "游ゴシック", "YuGothic", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", sans-serif;
+$yu-mincho:  "游明朝", YuMincho, "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif;
+$base-font-size: 14;
+
+// Sizing
+// ==========================================================================
+$wrapper-width: 0;
+
+// Global margin(paragraph)
+// ==========================================================================
+$base-margin: 0;
+
+// Media queries
+// ==========================================================================
+$breakpoint: 740px;
+
+// Mixin variables
+// ==========================================================================
+// テキストを隠す方向
+$hide-text-direction: right;
+// Browser support (old compass)
+$legacy-support-for-ie: false;
+$legacy-support-for-ie8: false;
