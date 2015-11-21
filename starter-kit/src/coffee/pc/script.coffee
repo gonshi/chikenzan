@@ -1,3 +1,23 @@
-location.replace(
-    "https://ja.wikipedia.org/wiki/%E7%89%B9%E5%88%A5:%E3%81%8A%E3%81%BE%E3%81%8B%E3%81%9B%E8%A1%A8%E7%A4%BA"
+###
+_req = new XMLHttpRequest()
+_req.onreadystatechange = ->
+    if _req.readyState == XMLHttpRequest.DONE
+        if _req.status == 200
+            console.log _req.responseText
+
+_req.open(
+    "get",
+    "https://ja.wikipedia.org/w/api.php?format=json&action=query&list=random&rnnamespace=0&rnlimit=1",
+    true
 )
+_req.send()
+###
+
+$.ajax
+    dataType: 'jsonp'
+    url: "https://ja.wikipedia.org/w/api.php?format=json&action=query&list=random&rnnamespace=0&rnlimit=1"
+.done (data) ->
+    $("<iframe>").addClass("wiki").
+    attr(src: "http://ja.wikipedia.org/w/index.php?curid=#{data.query.random[0].id}").
+    appendTo ".contents"
+    console.log data.query.random[0].title
