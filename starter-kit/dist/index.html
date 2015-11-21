@@ -5,11 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Wiki Tab</title>
-    <link rel="stylesheet" href="/css/style.css" media="screen, print">
+    <style type="text/css">iframe{position:absolute;top:0;bottom:0;left:0;right:0;width:100%;height:100%}
+
+    </style>
   </head>
   <body>
-    <main class="contents"></main>
-    <script src="js/jquery-2.1.4.min.js"></script>
-    <script src="js/script.js"></script>
+    <script type="text/javascript">var _script;window.callback=function(e){var t;return console.log(e.query.random[0].title),t=document.createElement("iframe"),t.setAttribute("src","http://ja.wikipedia.org/w/index.php?curid="+e.query.random[0].id),document.body.appendChild(t)},_script=document.createElement("script"),_script.setAttribute("src","https://ja.wikipedia.org/w/api.php?format=json&action=query&list=random&rnnamespace=0&rnlimit=1&callback=callback"),document.querySelector("head").appendChild(_script);
+    </script>
   </body>
 </html>

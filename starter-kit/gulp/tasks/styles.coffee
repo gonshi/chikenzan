@@ -4,7 +4,7 @@ sass = require('gulp-ruby-sass')
 $ = (require 'gulp-load-plugins')()
 
 option =
-    style: 'expanded',
+    style: 'compressed',
     precision: 10,
     sourcemap: false
 

@@ -46,14 +46,14 @@ gulp.task 'serve', () ->
         config.path.scss + '**/*.scss'
     ], -> runSequence('styles', reload))
     # $.watch([config.path.js + '**/*.js'], reload)
-    $.watch([config.path.coffee + '**/*.coffee'], -> runSequence('coffeelint', 'coffee', reload))
+    $.watch([config.path.coffee + '**/*.coffee'], -> runSequence('coffeelint', 'coffee', 'jade', reload))
 
 # Build Production Files, the Default Task
 gulp.task 'default', (cb) ->
     runSequence('build', 'serve', cb)
 
 gulp.task 'deploy', (cb) ->
-    runSequence('jade', 'coffeelint', 'coffee', 'copy', cb)
+    runSequence('coffeelint', 'coffee', 'minify:js', 'jade', 'copy', cb)
 
 # gulp.task 'minify', (cb) ->
 #     runSequence('minify:html', 'minify:styles', 'minify:scripts', cb)
