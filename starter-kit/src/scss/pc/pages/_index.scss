@@ -82,6 +82,10 @@ iframe{
     border-radius: 8px;
     background-color: #263238;
     z-index: index($zIndex, "social");
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.25s ease 0s;
+    pointer-events: none;
 
     &:before{
         @include absolute('', '', -6px, 13px);
@@ -91,14 +95,24 @@ iframe{
         background-color: #263238;
         content: "";
     }
+
+    &.is_show{
+        opacity: 1;
+        transform: translateY(0px);
+        pointer-events: auto;
+
+        &~ .social_btn{
+            opacity: 1;
+        }
+    }
 }
 
 .social_txt{
     display: block;
-    width: 150px;
+    width: 158px;
     height: 25px;
     margin: 10px auto;
-    padding: 0 10px;
+    padding: 0 6px;
     font-size: 14px;
     border-radius: 4px;
 }
@@ -111,7 +125,13 @@ iframe{
 
 .social_btns_inner{
     float: left;
+    border-radius: 5px;
     cursor: pointer;
+
+    &:hover,
+    &.is_active{
+        background-color: #0F1416;
+    }
 }
 
 .tweet{
@@ -123,6 +143,7 @@ iframe{
 }
 
 .gplus{
+    visibility: hidden;
     @include sprite($index_gplus);
 }
 
@@ -131,13 +152,11 @@ iframe{
 }
 
 .social_btn{
+    display: none;
     @include absolute('', '', 30px, 20px);
     position: fixed;
     @include sprite($index_social);
     cursor: pointer;
     z-index: index($zIndex, "social");
-
-    &:hover{
-        opacity: 0.7;
-    }
+    opacity: 0.8;
 }
