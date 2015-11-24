@@ -86,7 +86,6 @@ iframe{
     transform: translateY(10px);
     transition: all 0.25s ease 0s;
     pointer-events: none;
-    overflow: hidden;
 
     &:before{
         @include absolute('', '', -6px, 13px);
@@ -126,7 +125,7 @@ iframe{
 
 .social_btns_inner{
     float: left;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
 
     &:hover,
