@@ -3,9 +3,24 @@ html(lang="ja")
   head(prefix="og: http://ogp.me/ns# fb: http://www.facebook.com/2008/fbml")
     meta(charset="UTF-8")
     meta(http-equiv="X-UA-Compatible", content="IE=edge")
-    title Wiki Tab
+    title #{title}
+    meta(name="description" content=description)
+    link(rel="shortcut icon" type="image/vnd.microsoft.icon" href="favicon.ico")
+    link(rel="icon" type="image/vnd.microsoft.icon" href="favicon.ico")
     style(type="text/css")
       include ../../../dist/css/style.css
   body
+    main.contents
+      h1.ttl 知見山
+      p.loading
+    div.social
+      input.social_txt(type="text")
+      div.social_btns
+        p.social_btns_inner.tweet
+        p.social_btns_inner.facebook
+        p.social_btns_inner.gplus
+        p.social_btns_inner.link
+    p.social_btn
     script(type="text/javascript")
       include ../../../dist/js/script.js
+      include ga.js

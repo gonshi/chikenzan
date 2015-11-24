@@ -1,6 +1,32 @@
-// ==========================================================================
+// =========================================
 //   index
-// ==========================================================================
+// =========================================
+
+@import "../_index.scss";
+
+$zIndex: "dummy", "iframe", "social";
+
+@keyframes rotate{
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes show{
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+// =========================================
+//   common
+// =========================================
 
 *{
     margin: 0;
@@ -9,12 +35,109 @@
 }
 
 body{
+    background-color: #F6F6F6;
     overflow: hidden;
 }
+
+// =========================================
+//   loading
+// =========================================
+
+.ttl{
+    @include absolute(0, 0, 0, 0);
+    @include sprite($index_ttl);
+    margin: auto;
+    transform: translateY(-45px);
+    @include hide_text();
+}
+
+.loading{
+    @include absolute(50%, 0, '', 0);
+    @include sprite($index_loading);
+    margin: 135px auto 0;
+    animation: rotate 1.5s linear 0s infinite;
+}
+
+// =========================================
+//   iframe(main contents)
+// =========================================
 
 iframe{
     @include absolute(0, 0, 0, 0);
     width: calc(100% - 4px);
     height: calc(100% - 4px);
     border: none;
+    z-index: index($zIndex, "iframe");
+}
+
+// =========================================
+//   social
+// =========================================
+
+.social{
+    @include absolute('', '', 100px, 20px);
+    position: fixed;
+    width: 192px;
+    height: 94px;
+    border-radius: 8px;
+    background-color: #263238;
+    z-index: index($zIndex, "social");
+
+    &:before{
+        @include absolute('', '', -6px, 13px);
+        width: 30px;
+        height: 40px;
+        transform: rotate(45deg);
+        background-color: #263238;
+        content: "";
+    }
+}
+
+.social_txt{
+    display: block;
+    width: 150px;
+    height: 25px;
+    margin: 10px auto;
+    padding: 0 10px;
+    font-size: 14px;
+    border-radius: 4px;
+}
+
+.social_btns{
+    position: relative;
+    border-top: 1px solid #687074;
+    overflow: hidden;
+}
+
+.social_btns_inner{
+    float: left;
+    cursor: pointer;
+}
+
+.tweet{
+    @include sprite($index_tweet);
+}
+
+.facebook{
+    @include sprite($index_facebook);
+}
+
+.gplus{
+    @include sprite($index_gplus);
+}
+
+.link{
+    @include sprite($index_link);
+}
+
+.social_btn{
+    @include absolute('', '', 30px, 20px);
+    position: fixed;
+    @include sprite($index_social);
+    cursor: pointer;
+    z-index: index($zIndex, "social");
+
+    &:hover{
+        opacity: 0.7;
+    }
 }

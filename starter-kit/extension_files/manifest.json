@@ -1,9 +1,9 @@
 {
     "manifest_version": 2,
-    "name": "Wiki Tab",
+    "name": "知見山",
     "version": "0.1",
-    "description": "Chromeで新規タブを開く度にランダムなWikiPediaのページに飛んでくれるChrome拡張です。",
-    "author": "Shingo Tajima",
+    "description": "知見山は、Chromeで新規タブを開く度にランダムなWikiPediaのページに飛んでくれるChrome拡張です。",
+    "author": "Shingo Tajima, Gen Nakamori",
     "chrome_url_overrides" : {
         "newtab": "index.html"
     }
