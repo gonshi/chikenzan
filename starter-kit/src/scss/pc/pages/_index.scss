@@ -86,6 +86,7 @@ iframe{
     transform: translateY(10px);
     transition: all 0.25s ease 0s;
     pointer-events: none;
+    overflow: hidden;
 
     &:before{
         @include absolute('', '', -6px, 13px);
