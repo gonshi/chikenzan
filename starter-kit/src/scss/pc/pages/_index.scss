@@ -143,8 +143,20 @@ iframe{
 }
 
 .gplus{
-    visibility: hidden;
+    display: none;
     @include sprite($index_gplus);
+
+    @include is_en{
+        display: block;
+    }
+}
+
+.hatena{
+    @include sprite($index_hatena);
+
+    @include is_en{
+        display: none;
+    }
 }
 
 .link{

@@ -31,3 +31,9 @@
     @if $width  != '' { width: $width; margin-left: -$width / 2; }
     @if $height != '' { height: $height; margin-top: -$height / 2; }
 }
+
+@mixin is_en(){
+    body.is_en &{
+        @content;
+    }
+}

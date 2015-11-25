@@ -6,49 +6,43 @@ class Main
         @social_btns =
             tweet: document.querySelector ".tweet"
             facebook: document.querySelector ".facebook"
+            hatena: document.querySelector ".hatena"
             gplus: document.querySelector ".gplus"
             link: document.querySelector ".link"
         @social_btn = document.querySelector ".social_btn"
         @exec()
 
+    popup: (url) ->
+        if window.screenLeft?
+            _dualScreenLeft = window.screenLeft
+            _dualScreenTop = window.screenTop
+        else
+            _dualScreenLeft = window.screen.left
+            _dualScreenTop = window.screen.top
+
+        if window.innerWidth?
+            _windowWidth = window.innerWidth
+            _windowHeight = window.innerHeight
+        else if document.documentElement?.clientWidth?
+            _windowWidth = document.documentElement.clientWidth
+            _windowWidth = document.documentElement.clientHeight
+        else
+            _windowWidth = window.screen.width
+            _windowWidth = window.screen.height
+
+        _popupWidth = 800
+        _popupHeight = 600
+
+        _left = ((_windowWidth / 2) - (_popupWidth / 2)) + _dualScreenLeft
+        _top = ((_windowHeight / 2) - (_popupHeight / 2)) + _dualScreenTop
+
+        window.open(url, "popup",
+            "width=#{_popupWidth}, height=#{_popupHeight}, " +
+            "top=#{_top}, left=#{_left}"
+        )
+
     setSocial: ->
         _fb_appId = 469711053215641
-
-        window.twttr = (->
-            fjs = document.getElementsByTagName("script")[ 0 ]
-            return if document.getElementById "twitter-wjs"
-            js = document.createElement "script"
-            js.id = "twitter-wjs"
-            js.src = "https://platform.twitter.com/widgets.js"
-            fjs.parentNode.insertBefore js, fjs
-            if window.twttr?
-                return window.twttr
-            else
-                return (t =
-                    _e: []
-                    ready: (f) -> t._e.push(f)
-                )
-            )()
-
-        ###
-        j = document.createElement "script"
-        j.type = "text/javascript"
-        j.src = "https://b.st-hatena.com/js/bookmark_button.js"
-        j.async = "async"
-        j.charset = "utf-8"
-        s = document.getElementsByTagName("script")[0]
-        s.parentNode.insertBefore j, s
-        ###
-
-        # gplus
-        ###
-        po = document.createElement "script"
-        po.type = "text/javascript"
-        po.async = true
-        po.src = "https://apis.google.com/js/plusone.js"
-        s = document.getElementsByTagName("script")[0]
-        s.parentNode.insertBefore po, s
-        ###
 
         # fb-share
         fjs = document.getElementsByTagName("script")[0]
@@ -59,44 +53,26 @@ class Main
         fjs.parentNode.insertBefore js, fjs
 
         # fb-share
-        @social_btns.facebook.addEventListener "click", (e) =>
+        @social_btns.facebook.addEventListener "click", =>
             FB.ui
                 method: "share"
                 href: @url
 
         # tweet
-        @social_btns.tweet.addEventListener "click", (e) =>
-            if window.screenLeft?
-                _dualScreenLeft = window.screenLeft
-                _dualScreenTop = window.screenTop
-            else
-                _dualScreenLeft = window.screen.left
-                _dualScreenTop = window.screen.top
-
-            if window.innerWidth?
-                _windowWidth = window.innerWidth
-                _windowHeight = window.innerHeight
-            else if document.documentElement?.clientWidth?
-                _windowWidth = document.documentElement.clientWidth
-                _windowWidth = document.documentElement.clientHeight
-            else
-                _windowWidth = window.screen.width
-                _windowWidth = window.screen.height
-
-            _popupWidth = 650
-            _popupHeight = 450
-
-            _left = ((_windowWidth / 2) - (_popupWidth / 2)) + _dualScreenLeft
-            _top = ((_windowHeight / 2) - (_popupHeight / 2)) + _dualScreenTop
-
+        @social_btns.tweet.addEventListener "click", =>
             if @extract.length > 80 - @title.length
                 @extract = "#{@extract.slice(0, 80 - @title.length)}..."
             _txt = "#{@title} - #{@extract}"
 
-            window.open(
-                "http://twitter.com/share?url=#{@url}&text=#{encodeURIComponent(_txt)}&hashtags=知見山",
-                "twitter", "width=#{_popupWidth}, height=#{_popupHeight}, top=#{_top}, left=#{_left}"
-            )
+            @popup "http://twitter.com/share?url=#{@url}&text=#{encodeURIComponent(_txt)}&hashtags=知見山"
+
+        # hatena
+        @social_btns.hatena.addEventListener "click", =>
+            @popup "http://b.hatena.ne.jp/add?url=#{@url}&title=#{@title}"
+
+        # gplus
+        @social_btns.gplus.addEventListener "click", =>
+            @popup "https://plus.google.com/share?url=#{@url}"
 
     exec: ->
         ###########################
@@ -131,6 +107,7 @@ class Main
             @url = "http://#{@lang}.wikipedia.org/w/index.php?curid=#{data.query.random[0].id}"
             _iframe = document.createElement "iframe"
             _iframe.setAttribute "src", @url
+            _iframe.onload = => @social_btn.style.display = "block"
             document.body.appendChild _iframe
 
             _script = document.createElement "script"
@@ -141,8 +118,6 @@ class Main
             )
             @head.appendChild _script
 
-            @social_btn.style.display = "block"
-
         ###########################
         #   INIT
         ###########################
@@ -152,6 +127,8 @@ class Main
                 window.navigator.browserLanguage
 
         @lang = if _lang.match "ja" then "ja" else "en"
+
+        document.body.classList.add "is_en" if @lang == "en"
 
         _script = document.createElement "script"
         _script.setAttribute(
