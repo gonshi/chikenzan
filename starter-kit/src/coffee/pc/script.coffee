@@ -162,6 +162,6 @@ class Main
 
         @setSocial()
 
-        console.log window.parent.document.querySelector "title"
+        document.querySelector("title").innerHTML = "知見山2"
 
 new Main()
