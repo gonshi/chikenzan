@@ -162,4 +162,6 @@ class Main
 
         @setSocial()
 
+        console.log window.parent.document.querySelector "title"
+
 new Main()
