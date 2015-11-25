@@ -162,6 +162,4 @@ class Main
 
         @setSocial()
 
-        document.querySelector("title").innerHTML = "知見山2"
-
 new Main()
