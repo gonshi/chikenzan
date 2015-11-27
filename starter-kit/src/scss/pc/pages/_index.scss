@@ -130,7 +130,7 @@ iframe{
 
     &:hover,
     &.is_active{
-        background-color: #0F1416;
+        opacity: 0.7;
     }
 }
 
@@ -161,6 +161,37 @@ iframe{
 
 .link{
     @include sprite($index_link);
+    @include hide-text();
+}
+
+.link_balloon{
+    @include absolute('', 0, -50px, '');
+    width: 130px;
+    height: 40px;
+    line-height: 40px;
+    color: #fff;
+    font-size: 11px;
+    text-align: center;
+    background-color: #263238;
+    border-radius: 6px;
+    transition: all 0.5s ease 0s;
+    transform: translateY(-5px);
+    opacity: 0;
+
+    &:before{
+        @include absolute(-5px, 20px, '', '');
+        display: block;
+        width: 15px;
+        height: 15px;
+        transform: rotate(45deg);
+        background-color: #263238;
+        content: "";
+    }
+
+    &.is-show{
+        transform: translateY(0px);
+        opacity: 1;
+    }
 }
 
 .social_btn{

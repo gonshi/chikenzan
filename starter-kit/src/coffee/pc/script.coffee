@@ -10,6 +10,7 @@ class Main
             gplus: document.querySelector ".gplus"
             link: document.querySelector ".link"
         @social_btn = document.querySelector ".social_btn"
+        @link_balloon = document.querySelector ".link_balloon"
         @exec()
 
     popup: (url) ->
@@ -93,6 +94,22 @@ class Main
             else
                 @social_btns.link.classList.add "is_active"
                 @social_txt.setAttribute "value", @url
+                @social_btns.link.innerHTML = @url
+
+                _range = document.createRange()
+                _range.selectNode @social_btns.link
+                window.getSelection().addRange _range
+
+                try
+                    document.execCommand "copy"
+                    @link_balloon.classList.add "is-show"
+
+                    clearTimeout @balloon_timer
+                    @balloon_timer = setTimeout (=> @link_balloon.classList.remove "is-show"), 3000
+                catch err
+                    console.log err
+
+                window.getSelection().removeAllRanges()
 
             @social_txt.select()
 
