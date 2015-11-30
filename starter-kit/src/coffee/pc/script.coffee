@@ -90,10 +90,8 @@ class Main
         @social_btns.link.addEventListener "click", =>
             if @social_btns.link.getAttribute("class").match "is_active"
                 @social_btns.link.classList.remove "is_active"
-                @social_txt.setAttribute "value", "#{@title} - #{@url}"
             else
                 @social_btns.link.classList.add "is_active"
-                @social_txt.setAttribute "value", @url
                 @social_btns.link.innerHTML = @url
 
                 _range = document.createRange()
